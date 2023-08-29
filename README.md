@@ -3,7 +3,7 @@
 ### 開発サーバー立ち上げ
 
 ```
-docker exec -it reactad npm run dev
+docker exec -it chakuraui npm run dev
 ```
 
 ＃環境構築
@@ -22,5 +22,5 @@ docker exec -it chakuraui npm run dev
 docker-compose run --rm chakuraui npm create vite@latest .
 ```
 
-1, react 選択
+1, react 選択 <br/>
 2, typescript+SWC 選択
