@@ -1,6 +1,7 @@
-import { Login } from "../components/pages/Login";
+import { Home } from "../components/pages/Home";
 import { Setting } from "../components/pages/Setting";
 import { UserManagement } from "../components/pages/UserManagement";
+import { Page404 } from "../components/pages/Page404";
 
 interface homeRoutesInterface {
   path: string;
@@ -9,15 +10,19 @@ interface homeRoutesInterface {
 
 export const homeRoutes: homeRoutesInterface[] = [
   {
-    path: "/user_management",
+    path: "/home/user_management",
     children: <UserManagement />,
   },
   {
-    path: "/setting",
+    path: "/home/setting",
     children: <Setting />,
   },
   {
-    path: "Login",
-    children: <Login />,
+    path: "/home/",
+    children: <Home />,
+  },
+  {
+    path: "/home/*",
+    children: <Page404 />,
   },
 ];
