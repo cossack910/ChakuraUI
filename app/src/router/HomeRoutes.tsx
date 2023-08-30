@@ -10,19 +10,19 @@ interface homeRoutesInterface {
 
 export const homeRoutes: homeRoutesInterface[] = [
   {
-    path: "/home/user_management",
-    children: <UserManagement />,
-  },
-  {
-    path: "/home/setting",
-    children: <Setting />,
-  },
-  {
-    path: "/home/",
+    path: "home",
     children: <Home />,
   },
   {
-    path: "/home/*",
+    path: "home/user_management",
+    children: <UserManagement />,
+  },
+  {
+    path: "home/setting",
+    children: <Setting />,
+  },
+  {
+    path: "*",
     children: <Page404 />,
   },
 ];
