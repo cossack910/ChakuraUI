@@ -10,14 +10,21 @@ import {
 import { UserCard } from "../organisms/user/UserCard";
 import { UseAllUsers } from "../../hooks/useAllUsers";
 import { UserDetailModal } from "../organisms/user/UserDetailModal";
+import { useSelectUsers } from "../../hooks/useSelectUsers";
 
 export const UserManagement: FC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { getUsers, users, loading } = UseAllUsers();
+  const { onSelectUser, selectedUser } = useSelectUsers();
 
   useEffect(() => getUsers(), []);
 
-  const onClickUser = useCallback(() => onOpen(), []);
+  const onClickUser = useCallback(
+    (id: number) => {
+      onSelectUser({ id, users, onOpen });
+    },
+    [users, onSelectUser, onOpen]
+  );
 
   return (
     <>
@@ -30,6 +37,7 @@ export const UserManagement: FC = memo(() => {
           {users?.map((user) => (
             <WrapItem key={user.id} mx="auto">
               <UserCard
+                id={user.id}
                 userName={user.name}
                 fullName={user.username}
                 imageUrl="https://source.unsplash.com/random"
@@ -39,7 +47,7 @@ export const UserManagement: FC = memo(() => {
           ))}
         </Wrap>
       )}
-      <UserDetailModal isOpen={isOpen} onClose={onClose} />
+      <UserDetailModal user={selectedUser} isOpen={isOpen} onClose={onClose} />
     </>
   );
 });
